@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삶의 기초를 세우는 교육 (1학기) - 샬롬자유학교</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-sub: #555555;
+            --border-color: #e5e5e5;
+            --hover-bg: #f7f7f7;
+            --accent-color: #111111;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.8;
+        }
+
+        .navbar {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        .content-container {
+            max-width: 760px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+            flex: 1;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tag-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #111111;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.2px;
+        }
+
+        .page-header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .lead-quote {
+            font-size: 1.15rem;
+            color: var(--text-sub);
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .section-block {
+            margin-bottom: 48px;
+        }
+
+        .section-block h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .section-block h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            bottom: 6px;
+            width: 3px;
+            background: var(--text-main);
+        }
+
+        .section-block p {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        .program-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+        .p-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            background: #fafafa;
+            transition: all 0.2s;
+        }
+
+        .p-card:hover {
+            border-color: var(--text-main);
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .p-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .p-card p {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .bottom-nav {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 12px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--hover-bg);
+            border-color: var(--text-main);
+        }
+
+        .nav-btn.primary {
+            background: var(--text-main);
+            color: #ffffff;
+            border-color: var(--text-main);
+        }
+
+        .nav-btn.primary:hover {
+            background: #333333;
+        }
+
+        @media (max-width: 600px) {
+            .navbar { padding: 16px 20px; }
+            .content-container { padding: 40px 20px 60px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .bottom-nav { flex-direction: column; gap: 12px; }
+            .nav-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="nav-brand">샬롬자유학교</a>
+    <a href="index.html" class="back-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        전체 교육 체계로
+    </a>
+</header>
+
+<main class="content-container">
+    <header class="page-header">
+        <span class="tag-badge">교육 과정 01 · 1학기</span>
+        <h1>삶의 기초를 세우는 교육</h1>
+        <p class="lead-quote">"건강한 신체, 성숙한 대화, 세상과 소통하는 삶의 든든한 주춧돌 놓기"</p>
+    </header>
+
+    <section class="section-block">
+        <h2>과정 개요</h2>
+        <p>1학기에는 살아가면서 가장 기본이 되는 건강한 체력, 규칙적인 생활 습관, 타인과 평화롭게 소통하는 능력 등 전인적 기초 교육을 집중적으로 진행합니다.</p>
+        <p>깊이 있는 뿌리를 내려야 세찬 바람에도 흔들리지 않듯, 삶의 본질적인 힘을 다지는 시간입니다.</p>
+    </section>
+
+    <section class="section-block">
+        <h2>1학기 주요 집중 프로그램</h2>
+        <div class="program-cards">
+            <div class="p-card">
+                <h3>비폭력 대화 (NVC)</h3>
+                <p>자신의 감정과 욕구를 솔직하게 알아차리고, 타인의 마음에 깊이 공감하며 갈등을 평화적으로 해결하는 소통의 지혜를 배웁니다.</p>
+            </div>
+            <div class="p-card">
+                <h3>세계시민교육</h3>
+                <p>우리가 속한 지역사회를 넘어 지구촌의 다양한 이웃과 생태계 이슈를 마주하며, 더불어 살아가는 책임 있는 세계시민의 감수성을 기릅니다.</p>
+            </div>
+            <div class="p-card">
+                <h3>걷기여행</h3>
+                <p>자연 속을 친구들과 함께 오랜 시간 걸으며 육체적 인내심과 한계를 경험하고, 서로 돕고 의지하며 공동체적 연대감을 형성합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bottom-nav">
+        <a href="freedom.html" class="nav-btn">← 자유의 맛</a>
+        <a href="index.html" class="nav-btn">교육 체계도</a>
+        <a href="alternative.html" class="nav-btn primary">대안의 삶 →</a>
+    </footer>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>샬롬자유학교 - 교육 철학과 과정</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-sub: #666666;
+            --border-color: #e5e5e5;
+            --hover-bg: #f5f5f5;
+            --active-bg: #111111;
+            --active-text: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header-title {
+            margin-bottom: 50px;
+        }
+
+        .header-title span {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-sub);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .header-title h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .header-title p {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        .diagram-container {
+            position: relative;
+            width: 460px;
+            height: 460px;
+            margin: 0 auto;
+        }
+
+        .orbit-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .core-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            border: 1.5px solid var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: var(--bg-color);
+            z-index: 2;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .core-box h2 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.45;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .core-box p {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+
+        .node {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 1.5px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 12px;
+            z-index: 3;
+            color: var(--text-main);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .node .node-tag {
+            font-size: 0.65rem;
+            color: var(--text-sub);
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        .node:hover {
+            border-color: var(--text-main);
+            background-color: var(--text-main);
+            color: #ffffff;
+            transform: translate(-50%, -50%) scale(1.08) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .node:hover .node-tag {
+            color: #cccccc;
+        }
+
+        .node:nth-child(2) { top: 3%; left: 50%; transform: translate(-50%, 0); }
+        .node:nth-child(3) { top: 32%; left: 90%; transform: translate(-50%, -50%); }
+        .node:nth-child(4) { top: 80%; left: 75%; transform: translate(-50%, -50%); }
+        .node:nth-child(5) { top: 80%; left: 25%; transform: translate(-50%, -50%); }
+        .node:nth-child(6) { top: 32%; left: 10%; transform: translate(-50%, -50%); }
+
+        .guide-text {
+            margin-top: 45px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        @media (max-width: 520px) {
+            .diagram-container {
+                width: 340px;
+                height: 340px;
+            }
+            .core-box {
+                width: 150px;
+                height: 150px;
+                padding: 16px;
+            }
+            .core-box h2 { font-size: 0.75rem; }
+            .core-box p { font-size: 0.7rem; }
+            .node {
+                width: 86px;
+                height: 86px;
+                font-size: 0.75rem;
+                padding: 8px;
+            }
+            .node .node-tag { font-size: 0.6rem; }
+            .node:nth-child(2) { top: 1%; }
+            .node:nth-child(3) { top: 32%; left: 92%; }
+            .node:nth-child(4) { top: 82%; left: 76%; }
+            .node:nth-child(5) { top: 82%; left: 24%; }
+            .node:nth-child(6) { top: 32%; left: 8%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-title">
+        <span>Philosophy & Curriculum</span>
+        <h1>샬롬자유학교 교육 체계</h1>
+        <p>각 영역을 클릭하시면 상세 페이지로 이동합니다.</p>
+    </div>
+
+    <div class="diagram-container">
+        <svg class="orbit-svg" viewBox="0 0 460 460">
+            <circle cx="230" cy="230" r="165" fill="none" stroke="#e5e5e5" stroke-width="1.5" stroke-dasharray="4 4" />
+        </svg>
+
+        <a href="freedom.html" class="node">
+            <span>자유의 맛</span>
+            <span class="node-tag">교육 철학</span>
+        </a>
+        <a href="curriculum-1.html" class="node">
+            <span>삶의 기초를<br>세우는</span>
+            <span class="node-tag">1학기 과정</span>
+        </a>
+        <a href="alternative.html" class="node">
+            <span>대안의 삶</span>
+            <span class="node-tag">교육 철학</span>
+        </a>
+        <a href="curriculum-2.html" class="node">
+            <span>삶의 방향을<br>탐색하는</span>
+            <span class="node-tag">2학기 과정</span>
+        </a>
+        <a href="love.html" class="node">
+            <span>사랑의 멋</span>
+            <span class="node-tag">교육 철학</span>
+        </a>
+
+        <div class="core-box">
+            <h2>하나님의 형상을 회복하며</h2>
+            <p>삶의 힘을 기르는 교육</p>
+        </div>
+    </div>
+
+    <p class="guide-text">원하는 영역을 클릭하여 자세한 교육 내용과 활동을 확인해보세요.</p>
+</div>
+
+</body>
+</html>

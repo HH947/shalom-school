@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사랑의 멋 - 샬롬자유학교</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-sub: #555555;
+            --border-color: #e5e5e5;
+            --hover-bg: #f7f7f7;
+            --accent-color: #111111;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.8;
+        }
+
+        .navbar {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        .content-container {
+            max-width: 760px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+            flex: 1;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tag-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #f0f0f0;
+            color: #333333;
+            margin-bottom: 16px;
+            letter-spacing: -0.2px;
+        }
+
+        .page-header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .lead-quote {
+            font-size: 1.15rem;
+            color: var(--text-sub);
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .section-block {
+            margin-bottom: 48px;
+        }
+
+        .section-block h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .section-block h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            bottom: 6px;
+            width: 3px;
+            background: var(--text-main);
+        }
+
+        .section-block p {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        .love-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        .love-card {
+            background-color: var(--hover-bg);
+            border-radius: 8px;
+            padding: 20px 22px;
+            border: 1px solid var(--border-color);
+        }
+
+        .love-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .love-card p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background-color: var(--hover-bg);
+            border-left: 3px solid var(--text-main);
+            padding: 24px 28px;
+            border-radius: 0 8px 8px 0;
+            margin: 32px 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.75;
+        }
+
+        .bottom-nav {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 12px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--hover-bg);
+            border-color: var(--text-main);
+        }
+
+        .nav-btn.primary {
+            background: var(--text-main);
+            color: #ffffff;
+            border-color: var(--text-main);
+        }
+
+        .nav-btn.primary:hover {
+            background: #333333;
+        }
+
+        @media (max-width: 600px) {
+            .navbar { padding: 16px 20px; }
+            .content-container { padding: 40px 20px 60px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .love-grid { grid-template-columns: 1fr; }
+            .bottom-nav { flex-direction: column; gap: 12px; }
+            .nav-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="nav-brand">샬롬자유학교</a>
+    <a href="index.html" class="back-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        전체 교육 체계로
+    </a>
+</header>
+
+<main class="content-container">
+    <header class="page-header">
+        <span class="tag-badge">교육 철학 03</span>
+        <h1>사랑의 멋</h1>
+        <p class="lead-quote">"모든 배움과 관계의 밑바탕이 되는 가장 따뜻하고 단단한 뿌리"</p>
+    </header>
+
+    <section class="section-block">
+        <h2>모든 활동의 기반이 되는 사랑</h2>
+        <p>사랑은 추상적인 구호가 아니라, 매일 마주하는 친구의 눈을 바라보고, 함께 먹을 음식을 준비하며, 갈등 앞에서 한 걸음 물러서서 서로를 품어주는 실제적인 삶의 태도입니다.</p>
+        <p>샬롬자유학교는 학생들이 참여하는 모든 교육 활동과 관계 속에 사랑이 깊이 뿌리내리도록 돕습니다.</p>
+    </section>
+
+    <div class="love-grid">
+        <div class="love-card">
+            <h3>하나님 사랑</h3>
+            <p>생명의 근원이신 창조주를 경외하며 그분의 형상대로 지음 받은 고귀함을 깨닫습니다.</p>
+        </div>
+        <div class="love-card">
+            <h3>자기 사랑</h3>
+            <p>자신의 있는 그대로의 모습을 수용하고 존중하며 건강한 자아 존중감을 세웁니다.</p>
+        </div>
+        <div class="love-card">
+            <h3>이웃 사랑</h3>
+            <p>서로의 다름을 인정하고 연대하며, 함께 살아가는 공동체의 소중함을 배웁니다.</p>
+        </div>
+        <div class="love-card">
+            <h3>자연 사랑</h3>
+            <p>모든 생명과 자연 환경을 돌보고 아끼며 지속 가능한 조화로운 삶을 실천합니다.</p>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <p>“사랑이 결여된 지식은 차갑지만, 사랑이 담긴 배움은 사람을 살리고 세상을 변화시키는 힘이 됩니다.”</p>
+    </div>
+
+    <footer class="bottom-nav">
+        <a href="curriculum-2.html" class="nav-btn">← 삶의 방향을 탐색하는</a>
+        <a href="index.html" class="nav-btn">교육 체계도</a>
+        <a href="freedom.html" class="nav-btn primary">자유의 맛 →</a>
+    </footer>
+</main>
+
+</body>
+</html>
